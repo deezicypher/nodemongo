@@ -1,8 +1,11 @@
-const http = require('http');
-
+import mongoose from "mongoose";
+import http from 'http'
+import dotenv from 'dotenv'
 const hostname = '0.0.0.0';
 const port = process.env.PORT;
 
+
+dotenv.config()
 
 mongoose.set('strictQuery', true);
 
