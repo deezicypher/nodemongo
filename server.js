@@ -1,9 +1,8 @@
-import express from "express";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
+const http = require('http');
 
-dotenv.config()
-const app = express();
+const hostname = '0.0.0.0';
+const port = process.env.PORT;
+
 
 mongoose.set('strictQuery', true);
 
@@ -25,8 +24,14 @@ mongoose.connection.on('disconnected', () => {
   console.log("MongoDB disconnected");
 });
 
-// Start the server and connect to DB
-app.listen(5000, async () => {
-  await connectMongoDB();
-  console.log("Server is listening on port 5000");
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello Welcome To Node Mongo');
 });
+
+server.listen(port, hostname, () => {
+    connectMongoDB()
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
