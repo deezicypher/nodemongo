@@ -30,6 +30,6 @@ app.all((/.*/),(req,res) => {
 })
 // Start the server and connect to DB
 app.listen(5000, async () => {
-  //await connectMongoDB();
+  await connectMongoDB();
   console.log("Server is listening on port 5000");
 });
